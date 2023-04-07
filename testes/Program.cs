@@ -1,25 +1,24 @@
-﻿internal class Program
+﻿using EnumerableTest;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
-        var list = GetList();
-        Console.WriteLine(list.Count);
-        Console.WriteLine(list.Count);
+        //ListScenarios.ExecuteCountScenario();
+        IEnumerableScenarios.ExecuteCountScenario();
+
+        //ListScenarios.ExecuteFirstOrDefaultScenario();
+        //IEnumerableScenarios.ExecuteFirstOrDefaultScenario();
     }
 
-    public static List<string> GetList()
-    {
-        var items = new List<string>()
-            {
-                "Teste1", "Teste2"
-            };
+    /* 
+     CONCLUSION:
+        Listas são tipos melhores para quando a lista vai ser manipulada, pois ela é instânciada
+    uma vez na memória, e partir dali já teremos todas as informações.
+    Comandos que iteram sobre toda a lista como Where, Count devem ser utilizados nesse cenário
 
-        return items.Where(item => ExistsLetter(item, "T")).ToList();
-    }
-
-    public static bool ExistsLetter(string item, string letter)
-    {
-        Console.WriteLine("Verificando se letra existe");
-        return item.Contains(letter);
-    }
+        Enumerables são instânciados inteiramente toda vez que serão manipulados, mas possuem a vantagem
+    de funcionar melhor em termos de comandos que não iteram pela lista toda / iteram somente uma vez.
+    Comandos que não iteram sobre toda a lista como FirstOrDefault, First devem ser utilizados nesse cenário.
+     */
 }
